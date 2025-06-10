@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 맛포서울 (Taste for Seoul)
 
-## Getting Started
+서울사람이 직접 가보고 작성하는 서울 여행 맛집 블로그
 
-First, run the development server:
+## 🚀 프로젝트 소개
+
+맛포서울은 서울 마포구 기반 맛집 추천 서비스입니다. 
+현지인이(바로 나!) 직접 경험한 진정성 있는 맛집 정보를 제공하며, 계절별로 변주되는 서울의 다양한 미식 여정을 안내합니다.
+
+## ✨ 주요 기능
+
+- **지역 기반 검색** : 서울 내 지역별 맛집 검색 및 필터링
+- **상세 정보 제공** : 메뉴, 가격대, 영업시간 등 맛집 상세 정보 제공
+- **다국어 지원** : 한국어, 영어, 일본어, 중국어 지원
+- **반응형 디자인** : 모바일, 태블릿, 데스크톱에서 최적화된 화면 제공
+
+## 🛠 기술 스택
+
+- **프론트엔드**: Next.js 15 (App Router)
+- **스타일링**: Tailwind CSS, chadCN
+- **애니메이션**: Framer Motion
+- **데이터베이스**: Supabase
+- **상태 관리**: Zustand
+- **다국어**: next-intl
+- **폰트**: Geist (Vercel)
+
+## 🚀 시작하기
+
+### 개발 서버 실행
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+브라우저에서 [http://localhost:3000](http://localhost:3000)에 접속하세요.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 프로젝트 빌드
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm build
+```
 
-## Learn More
+## 📂 프로젝트 구조
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/                  # 페이지 라우트
+├── entities/             # 도메인 엔티티
+├── features/             # 기능별 모듈
+├── shared/               # 공통 컴포넌트 및 유틸리티
+└── widgets/              # 재사용 가능한 위젯
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📝 기여하기
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+버그 리포트나 기능 제안은 이슈 트래커를 통해 남겨주세요. 풀 리퀘스트도 환영합니다!
 
-## Deploy on Vercel
+## 📄 라이선스
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+이 프로젝트는 MIT 라이선스 하에 배포됩니다.
