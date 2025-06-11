@@ -1,6 +1,9 @@
 # 맛포서울 (Taste for Seoul)
 
-서울사람이 직접 가보고 작성하는 서울 여행 맛집 블로그
+서울사람이 직접 가보고 작성하는 서울 여행 맛집 블로그 하지만 영어로
+
+![image](https://github.com/user-attachments/assets/f13a01e4-b175-4fda-84c4-a643f7457e13)
+
 
 ## 🚀 프로젝트 소개
 
