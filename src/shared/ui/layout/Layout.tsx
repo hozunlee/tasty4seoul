@@ -3,7 +3,7 @@ import React from 'react';
 
 
 import { NavBar } from "@/shared/ui/layout/components/Nav"
-import { Home, MessageSquare, User } from "lucide-react"
+import { Home, MessageSquare, User, MapPin } from "lucide-react"
 
 
 const navItems = [
@@ -13,17 +13,21 @@ const navItems = [
     icon: <Home className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
   {
+    name: "Blog",
+    link: "/blog",
+    icon: <MessageSquare className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
+  {
+    name: "Map",
+    link: "/map",
+    icon: <MapPin className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
+  {
     name: "About",
     link: "/about",
     icon: <User className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
-  {
-    name: "Contact",
-    link: "/contact",
-    icon: <MessageSquare className="h-4 w-4 text-neutral-500 dark:text-white" />,
-  },
 ]
-
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (

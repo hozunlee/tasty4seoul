@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Post } from '@/entities/post/model/types';
 import { PostCard } from '@/entities/post/ui/PostCard';
+import { BlogPostSkeleton } from '@/shared/ui/skeletons/BlogPostSkeleton';
 
 interface PostListInfiniteProps {
   initialPosts: Post[];
@@ -76,21 +77,28 @@ export function PostListInfinite({ initialPosts, postsPerPage, searchTerm }: Pos
   }, [loadMorePosts, hasMore, loading]); // Add loading to dependencies to re-observe when loading state changes
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {posts.map((post) => (
-        post.id ? <PostCard key={post.id} post={post} /> : null
-      ))}
-      {loading && (
-        <div className="col-span-full text-center py-4">
-          <p>Loading more posts...</p>
+    <div className="space-y-6">
+      <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => (
+          post.id ? <PostCard key={post.id} post={post} /> : null
+        ))}
+      </div>
+      
+      {loading && <BlogPostSkeleton />}
+      
+      {!loading && !hasMore && posts.length > 0 && (
+        <div className="text-center py-8 text-muted-foreground">
+          You've reached the end of the list
         </div>
       )}
-      {!hasMore && posts.length > 0 && (
-        <div className="col-span-full text-center py-4 text-gray-500">
-          <p>You've reached the end of the posts!</p>
+      
+      {!loading && posts.length === 0 && (
+        <div className="text-center py-12">
+          <p className="text-muted-foreground">No posts found</p>
         </div>
       )}
-      <div ref={observerRef} className="col-span-full h-1" /> {/* Intersection Observer target */}
+      
+      <div ref={observerRef} className="h-1" />
     </div>
   );
 }

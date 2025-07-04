@@ -1,8 +1,9 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useMemo } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { cn } from "@/shared/lib/utils"
 
 interface NavItem {
@@ -17,17 +18,35 @@ interface NavBarProps {
 }
 
 export function NavBar({ items, className }: NavBarProps) {
-  const [activeTab, setActiveTab] = useState(items[0].name)
+  const pathname = usePathname()
   const [isMobile, setIsMobile] = useState(false)
+  
+  // Get the active tab based on the current path
+  const activeTab = useMemo(() => {
+    // For home page
+    if (pathname === '/') return 'Home'
+    
+    // For other pages, find the first item where the pathname starts with the link
+    const activeItem = items.find(item => 
+      item.link !== '/' && pathname.startsWith(item.link)
+    )
+    
+    return activeItem?.name || items[0]?.name
+  }, [pathname, items])
 
   useEffect(() => {
-    const handleResize = () => {
+    const checkIfMobile = () => {
       setIsMobile(window.innerWidth < 768)
     }
-    if (isMobile) {}
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
+    
+    // Initial check
+    checkIfMobile()
+    
+    // Add event listener for window resize
+    window.addEventListener("resize", checkIfMobile)
+    
+    // Cleanup
+    return () => window.removeEventListener("resize", checkIfMobile)
   }, [])
 
   return (
@@ -37,43 +56,44 @@ export function NavBar({ items, className }: NavBarProps) {
         className,
       )}
     >
-      <div className="flex items-center gap-3 bg-background/5 border border-border backdrop-blur-lg py-1 px-1 rounded-full shadow-lg pointer-events-auto">
+      <div className="flex items-center gap-1 sm:gap-3 bg-background/95 border border-border backdrop-blur-lg py-2 px-2 sm:py-1 sm:px-1 rounded-full shadow-lg pointer-events-auto">
         {items.map((item) => {
-          const Icon = item.icon
           const isActive = activeTab === item.name
 
           return (
             <Link
               key={item.name}
               href={item.link}
-              onClick={() => setActiveTab(item.name)}
+              // Active state is now handled by URL
               className={cn(
-                "relative cursor-pointer text-sm font-semibold px-16 py-2 rounded-full transition-colors",
-                "text-foreground/80 hover:text-primary",
-                isActive && "bg-muted text-primary",
+                "relative flex flex-col items-center justify-center w-16 h-16 sm:w-auto sm:h-auto sm:px-4 sm:py-2 rounded-full transition-all",
+                "text-foreground/80 hover:text-primary hover:bg-muted/50",
+                isActive ? "text-primary bg-muted" : "",
               )}
             >
-              <span className="hidden md:inline">{item.name}</span>
-              <span className="md:hidden">
-                {Icon}
+              <span className={cn(
+                "flex items-center justify-center w-8 h-8 sm:w-4 sm:h-4",
+                isActive ? "text-primary" : "text-foreground/70"
+              )}>
+                {item.icon}
+              </span>
+              <span className={cn(
+                "text-xs mt-1 sm:mt-0 sm:ml-2 sm:text-sm",
+                isActive ? "text-primary font-medium" : "text-foreground/70"
+              )}>
+                {item.name}
               </span>
               {isActive && (
-                <motion.div
-                  layoutId="lamp"
-                  className="absolute inset-0 w-full bg-primary/5 rounded-full -z-10"
+                <motion.span
+                  layoutId="activeTab"
+                  className="absolute inset-0 -z-10 bg-muted/80 dark:bg-muted/90 rounded-full"
                   initial={false}
                   transition={{
                     type: "spring",
-                    stiffness: 300,
+                    stiffness: 500,
                     damping: 30,
                   }}
-                >
-                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-primary rounded-t-full">
-                    <div className="absolute w-12 h-6 bg-primary/20 rounded-full blur-md -top-2 -left-2" />
-                    <div className="absolute w-8 h-6 bg-primary/20 rounded-full blur-md -top-1" />
-                    <div className="absolute w-4 h-4 bg-primary/20 rounded-full blur-sm top-0 left-2" />
-                  </div>
-                </motion.div>
+                />
               )}
             </Link>
           )

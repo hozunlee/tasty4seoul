@@ -5,6 +5,7 @@ export interface Post {
   desc: string;
   image_url: string; // image -> image_url for clarity
   tags: string[];
+  address?: string;
   created_at: string;
   updated_at: string;
 }
