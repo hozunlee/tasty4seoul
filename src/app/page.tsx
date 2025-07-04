@@ -11,10 +11,9 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50">
       <main className="@container py-2">
-
-        <div className="mb-2">
+      <header className="text-center mb-12">
         <Hero />
-        </div>
+        </header>
 
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-6 px-4">Latest Posts</h2>

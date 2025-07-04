@@ -27,7 +27,7 @@ const navItems = [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div>
+    <div className="relative min-h-screen pb-[calc(4rem+1.5rem)] md:pb-0 md:pt-20">
       <NavBar items={navItems} />
       {children}
       <footer className='hidden md:block'>© 2025 By HOLOLOG.</footer>

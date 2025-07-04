@@ -20,9 +20,9 @@ function Hero() {
   }, [titleNumber, titles]);
 
   return (
-    <div className="w-full mt-16">
+    <div className="w-full mt-10">
       <div className=" mx-auto ">
-        <div className="flex md:gap-8 py-5 lg:py-10 items-center justify-center flex-col">
+        <div className="flex md:gap-8 items-center justify-center flex-col">
           <div>
             {/* <Button variant="secondary" size="sm" className="gap-4">
               Read our launch article <MoveRight className="w-4 h-4" />
