@@ -63,7 +63,7 @@ export default function BlogClient() {
         </div>
       ) : initialPosts.length === 0 && searchTerm ? (
         <div className="text-center py-10">
-          <h2 className="text-2xl font-bold">No results found for "{searchTerm}"</h2>
+          <h2 className="text-2xl font-bold">No results found for &quot;{searchTerm}&quot;</h2>
           <p className="text-gray-500">Try a different search term or clear your search.</p>
         </div>
       ) : (

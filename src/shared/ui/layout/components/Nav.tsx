@@ -19,7 +19,7 @@ interface NavBarProps {
 
 export function NavBar({ items, className }: NavBarProps) {
   const pathname = usePathname()
-  const [isMobile, setIsMobile] = useState(false)
+  
   
   // Get the active tab based on the current path
   const activeTab = useMemo(() => {
@@ -34,20 +34,7 @@ export function NavBar({ items, className }: NavBarProps) {
     return activeItem?.name || items[0]?.name
   }, [pathname, items])
 
-  useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    
-    // Initial check
-    checkIfMobile()
-    
-    // Add event listener for window resize
-    window.addEventListener("resize", checkIfMobile)
-    
-    // Cleanup
-    return () => window.removeEventListener("resize", checkIfMobile)
-  }, [])
+  
 
   return (
     <div

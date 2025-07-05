@@ -36,7 +36,7 @@ export async function getEngPostById(id: string): Promise<Post | null> {
   try {
     const { data, error } = await supabase
       .from('eng_posts')
-      .select('id,title,desc,image,created_at')
+      .select('*')
       .eq('id', id)
       .single(); // .single() ensures we get one record or null
 

@@ -13,7 +13,7 @@ export default async function MapPage() {
               </header>
       <main className="container mx-auto py-8 px-4">
         <h1 className="text-4xl font-bold mb-8 text-center">
-          Explore Seoul's Best on the Map
+          Explore Seoul&apos;s Best on the Map
         </h1>
 
         <section className="mb-12">

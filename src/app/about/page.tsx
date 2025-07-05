@@ -24,7 +24,7 @@ export default function AboutPage() {
             <p className="text-lg md:text-xl text-gray-600">
               서울 마포구에 사는 현지인이 포스팅하는 맛집 블로그입니다.
             </p>
-            <p>This blog is all about delicious restaurants in Seoul's Mapo-gu district (around), as recommended by a local resident. We give you the chance to visit, sample the food and experience Seoul for yourself.</p>
+            <p>This blog is all about delicious restaurants in Seoul&apos;s Mapo-gu district (around), as recommended by a local resident. We give you the chance to visit, sample the food and experience Seoul for yourself.</p>
             <div className="flex items-center gap-2 mt-6 justify-center">
               <span>contact us :</span>
               <a 

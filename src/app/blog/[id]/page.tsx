@@ -6,11 +6,7 @@ import remarkGfm from 'remark-gfm';
 import { getEngPostById, getAdjacentEngPosts } from '@/entities/post/api/posts';
 import { RelatedPosts } from '@/widgets/blog/RelatedPosts';
 
-interface PostPageProps {
-  params: {
-    id: string;
-  };
-}
+
 
 // Generate SEO-optimized metadata for blog posts
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
@@ -172,7 +168,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           components={{
-            img: ({ node, ...props }) => (
+            img: ({ ...props }) => (
               <span className="block relative w-full h-96 max-h-[1000px] my-4">
                 <Image
                   // {...props}

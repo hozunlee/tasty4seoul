@@ -14,7 +14,7 @@ const BrandIdentity = () => {
           </p>
           
           <div className="py-4 px-6 bg-white rounded-xl shadow-sm border border-gray-100">
-            <p className="text-gray-700 italic mb-2">"오늘 뭐 먹지? 맛포서울에게 물어봐"</p>
+            <p className="text-gray-700 italic mb-2">&quot;오늘 뭐 먹지? 맛포서울에게 물어봐&quot;</p>
             <p className="text-gray-500 text-sm">Taste Mapo, Live like a Local.</p>
             <div className="flex items-center gap-2 mt-6 justify-center">
               <a 

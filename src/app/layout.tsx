@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Layout } from "@/shared/ui/layout/Layout";
@@ -37,8 +37,7 @@ export const metadata: Metadata = {
   title,
   description,
   keywords,
-  themeColor: '#FF5A36',
-  viewport: 'width=device-width, initial-scale=1',
+  // viewport and themeColor moved to viewport.ts
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'),
   alternates: {
     canonical: '/',

@@ -1,6 +1,6 @@
 import HeroClientWrapper from '@/shared/ui/HeroClientWrapper';
 import BlogClient from './BlogClient';
-import { Metadata } from 'next';
+
 
 // Re-export metadata from the separate metadata file
 import { metadata as blogMetadata } from './metadata';
