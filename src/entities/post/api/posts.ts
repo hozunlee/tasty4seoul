@@ -36,7 +36,7 @@ export async function getEngPostById(id: string): Promise<Post | null> {
   try {
     const { data, error } = await supabase
       .from('eng_posts')
-      .select('*')
+      .select('id,title,desc,image,created_at')
       .eq('id', id)
       .single(); // .single() ensures we get one record or null
 
@@ -57,7 +57,33 @@ export async function getEngPostById(id: string): Promise<Post | null> {
   }
 }
 
+export async function getRelatedEngPosts(currentPostId: string, tags: string[], limit: number = 3): Promise<Post[]> {
+  if (!tags || tags.length === 0) {
+    return [];
+  }
 
+  try {
+    // Supabase doesn't directly support OR conditions on array contains, so we'll query by each tag
+    // and then filter unique results and exclude the current post.
+    const { data, error } = await supabase
+      .from('eng_posts')
+      .select('*')
+      .not('id', 'eq', currentPostId) // Exclude the current post
+      .filter('tags', 'cs', `{${tags.join(',')}}`) // Check if tags array contains any of the given tags
+      .order('created_at', { ascending: false })
+      .limit(limit);
+
+    if (error) {
+      console.error('Error fetching related posts:', error);
+      return [];
+    }
+
+    return data || [];
+  } catch (error) {
+    console.error('An unexpected error occurred while fetching related posts:', error);
+    return [];
+  }
+}
 
 export async function getAdjacentEngPosts(currentPostCreatedAt: string, currentPostId: string, limit: number = 3): Promise<Post[]> {
   try {
@@ -85,9 +111,6 @@ export async function getAdjacentEngPosts(currentPostCreatedAt: string, currentP
       console.error('Error fetching next posts:', nextError);
     }
 
-    console.log('getAdjacentEngPosts - prevData:', prevData);
-    console.log('getAdjacentEngPosts - nextData:', nextData);
-
     // Combine and filter out the current post (though it should already be excluded by lt/gt)
     const combinedPosts = [...(prevData || []), ...(nextData || [])];
     const uniquePosts = Array.from(new Map(combinedPosts.map(post => [post.id, post])).values());
@@ -96,9 +119,7 @@ export async function getAdjacentEngPosts(currentPostCreatedAt: string, currentP
     uniquePosts.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 
     // Ensure we don't return more than 3 posts (or specified limit)
-    const finalPosts = uniquePosts.slice(0, limit);
-    console.log('getAdjacentEngPosts - finalPosts:', finalPosts);
-    return finalPosts;
+    return uniquePosts.slice(0, limit);
 
   } catch (error) {
     console.error('An unexpected error occurred while fetching adjacent posts:', error);
