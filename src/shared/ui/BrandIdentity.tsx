@@ -5,7 +5,7 @@ const BrandIdentity = () => {
     <section className="w-full mt-16 p-8 rounded-2xl" style={{ background: 'linear-gradient(135deg, #FFF9F8 0%, #F0F9F9 100%)' }}>
       <div className="text-center">
         <h2 className="text-4xl font-bold mb-6 bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, #FF5A36 0%, #FFC700 100%)' }}>
-          맛포서울 | Tasty 4 Seoul
+          맛포서울 | Taste 4 Seoul
         </h2>
         <div className="max-w-2xl mx-auto space-y-6">
           <p className="text-lg text-gray-800">
