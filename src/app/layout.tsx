@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   description,
   keywords,
   // viewport and themeColor moved to viewport.ts
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || process.env.NEXT_PUBLIC_SUB_URL || 'http://localhost:3000'),
   alternates: {
     canonical: '/',
     languages: {
