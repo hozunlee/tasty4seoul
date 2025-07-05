@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: `${title} | Best Local Eats in Seoul`,
     description,
-    images: ['/og_img.png'],
+    images: ['https://mjxiofcpqnyfnskvoxut.supabase.co/storage/v1/object/public/strapi-uploads//og_img.png'],
     site: '@taste4seoul',
     creator: '@taste4seoul',
   },
