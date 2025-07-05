@@ -131,7 +131,13 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   };
 }
 
-export default async function PostPage({ params }: { params: { id: string } }) {
+interface PostPageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default async function PostPage({ params }: PostPageProps) {
   const post = await getEngPostById(params.id);
 
   if (!post) {
