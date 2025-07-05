@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: `${title} | Best Local Eats in Seoul`,
+    title: `${title} | Best Local Eats in Seoul || Hidden Gems`,
     description,
     url: '/',
     siteName: 'tasty 4 Seoul',
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/og_img.png',
+        url: 'https://mjxiofcpqnyfnskvoxut.supabase.co/storage/v1/object/public/strapi-uploads//og_img.png',
         width: 1200,
         height: 630,
         alt: 'tasty 4 Seoul - Discover the best Korean food in Seoul',
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${title} | Best Local Eats in Seoul`,
+    title: `${title} | Best Local Eats in Seoul || Hidden Gems`,
     description,
     images: ['https://mjxiofcpqnyfnskvoxut.supabase.co/storage/v1/object/public/strapi-uploads//og_img.png'],
     site: '@tasty4seoul',
