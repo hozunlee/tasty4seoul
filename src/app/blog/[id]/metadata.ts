@@ -26,12 +26,12 @@ export async function generateMetadata(
       description: 'The requested post could not be found. Discover the best Korean food and hidden restaurants in Seoul.',
       keywords: seoKeywords.join(', '),
       openGraph: {
-        title: 'Post Not Found | Taste 4 Seoul',
+        title: 'Post Not Found | tasty 4 Seoul',
         description: 'The requested post could not be found. Discover the best Korean food and hidden restaurants in Seoul.',
         url: postUrl,
         type: 'website',
         locale,
-        siteName: 'Taste 4 Seoul',
+        siteName: 'tasty 4 Seoul',
         images: [
           {
             url: '/og_img.png',
@@ -43,7 +43,7 @@ export async function generateMetadata(
       },
       twitter: {
         card: 'summary_large_image',
-        title: 'Post Not Found | Taste 4 Seoul',
+        title: 'Post Not Found | tasty 4 Seoul',
         description: 'The requested post could not be found. Discover the best Korean food and hidden restaurants in Seoul.',
         images: ['/og_img.png'],
       },
@@ -62,9 +62,9 @@ export async function generateMetadata(
     title: postTitle,
     description: postDescription,
     keywords: postKeywords,
-    applicationName: 'Taste 4 Seoul',
-    creator: 'Taste 4 Seoul Team',
-    publisher: 'Taste 4 Seoul',
+    applicationName: 'tasty 4 Seoul',
+    creator: 'tasty 4 Seoul Team',
+    publisher: 'tasty 4 Seoul',
     metadataBase: new URL(baseUrl),
     alternates: {
       canonical: postUrl,
@@ -92,7 +92,7 @@ export async function generateMetadata(
       url: postUrl,
       type: 'article',
       locale: 'en_US',
-      siteName: 'Taste 4 Seoul',
+      siteName: 'tasty 4 Seoul',
       publishedTime: post.created_at,
       modifiedTime: post.updated_at || post.created_at,
       images: [
@@ -110,13 +110,13 @@ export async function generateMetadata(
       'article:modified_time': post.updated_at || post.created_at,
       'article:section': 'Food & Travel',
       'article:tag': post.tags?.join(', ') || 'Korean food, Seoul restaurants, Food travel',
-      'article:author': 'Taste 4 Seoul Team',
+      'article:author': 'tasty 4 Seoul Team',
       'twitter:card': 'summary_large_image',
       'twitter:title': postTitle,
       'twitter:description': postDescription,
       'twitter:image': postImage,
-      'twitter:creator': '@taste4seoul',
-      'twitter:site': '@taste4seoul'
+      'twitter:creator': '@tasty4seoul',
+      'twitter:site': '@tasty4seoul'
     },
     formatDetection: {
       email: false,

@@ -5,7 +5,7 @@ const BrandIdentity = () => {
     <section className="w-full mt-16 p-8 rounded-2xl" style={{ background: 'linear-gradient(135deg, #FFF9F8 0%, #F0F9F9 100%)' }}>
       <div className="text-center">
         <h2 className="text-4xl font-bold mb-6 bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, #FF5A36 0%, #FFC700 100%)' }}>
-          맛포서울 | Taste 4 Seoul
+          맛포서울 | tasty 4 Seoul
         </h2>
         <div className="max-w-2xl mx-auto space-y-6">
           <p className="text-lg text-gray-800">
@@ -15,7 +15,7 @@ const BrandIdentity = () => {
           
           <div className="py-4 px-6 bg-white rounded-xl shadow-sm border border-gray-100">
             <p className="text-gray-700 italic mb-2">&quot;오늘 뭐 먹지? 맛포서울에게 물어봐&quot;</p>
-            <p className="text-gray-500 text-sm">Taste Mapo, Live like a Local.</p>
+            <p className="text-gray-500 text-sm">tasty Mapo, Live like a Local.</p>
             <div className="flex items-center gap-2 mt-6 justify-center">
               <a 
                 href="https://www.instagram.com/runtastygood?igsh=MTN3MW9xdThpZzN1eQ==" 

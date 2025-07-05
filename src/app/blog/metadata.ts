@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     url: '/blog',
     type: 'website',
     locale: 'en_US',
-    siteName: 'Taste 4 Seoul',
+    siteName: 'tasty 4 Seoul',
     images: [
       {
         url: '/og_img.png',
@@ -41,8 +41,8 @@ export const metadata: Metadata = {
     title: 'Seoul Food Blog | Best Korean Food Guide & Hidden Gems',
     description: 'Discover the best Korean food in Seoul with our expert guides. Find hidden gems, local favorites, and must-try dishes.',
     images: ['/og_img.png'],
-    creator: '@taste4seoul',
-    site: '@taste4seoul'
+    creator: '@tasty4seoul',
+    site: '@tasty4seoul'
   },
   robots: {
     index: true,
@@ -58,6 +58,6 @@ export const metadata: Metadata = {
   other: {
     'article:section': 'Food & Travel',
     'article:tag': 'Korean food, Seoul restaurants, Food travel, Korean cuisine, Seoul food guide',
-    'article:author': 'Taste 4 Seoul Team'
+    'article:author': 'tasty 4 Seoul Team'
   }
 };

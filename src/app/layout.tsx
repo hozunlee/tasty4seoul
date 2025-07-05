@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const title = "Taste 4 Seoul | Authentic Korean Food Guide & Hidden Gems in Seoul";
+const title = "tasty 4 Seoul | Authentic Korean Food Guide & Hidden Gems in Seoul";
 const description = "Discover the best Korean food in Seoul with our local's guide to authentic restaurants, street food, and hidden gems. Find the best places to eat in Hongdae, Itaewon, Insadong and more!";
 const keywords = [
   "best Korean food Seoul",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     title: `${title} | Best Local Eats in Seoul`,
     description,
     url: '/',
-    siteName: 'Taste 4 Seoul',
+    siteName: 'tasty 4 Seoul',
     locale: 'en_US',
     type: 'website',
     images: [
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
         url: '/og_img.png',
         width: 1200,
         height: 630,
-        alt: 'Taste 4 Seoul - Discover the best Korean food in Seoul',
+        alt: 'tasty 4 Seoul - Discover the best Korean food in Seoul',
       },
     ],
   },
@@ -67,8 +67,8 @@ export const metadata: Metadata = {
     title: `${title} | Best Local Eats in Seoul`,
     description,
     images: ['https://mjxiofcpqnyfnskvoxut.supabase.co/storage/v1/object/public/strapi-uploads//og_img.png'],
-    site: '@taste4seoul',
-    creator: '@taste4seoul',
+    site: '@tasty4seoul',
+    creator: '@tasty4seoul',
   },
   robots: {
     index: true,
