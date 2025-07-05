@@ -10,7 +10,7 @@ const containerStyle = {
   boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)'
 };
 
-const defaultCenter = {
+const defaultCenter: { lat: number; lng: number } = {
   lat: 37.5665, // Seoul coordinates
   lng: 126.9780
 };
@@ -22,13 +22,13 @@ interface MapComponentProps {
 export function MapComponent({ posts }: MapComponentProps) {
   // Filter posts with valid coordinates
   const markers = posts
-    .filter(post => post.latitude && post.longitude)
+    .filter(post => post.latitude !== undefined && post.longitude !== undefined)
     .map(post => ({
       id: post.id,
       title: post.title,
       position: {
-        lat: parseFloat(post.latitude as string),
-        lng: parseFloat(post.longitude as string)
+        lat: post.latitude as number,
+        lng: post.longitude as number
       },
       address: post.address
     }));
