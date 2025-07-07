@@ -83,7 +83,9 @@ export const metadata: Metadata = {
   },
   verification: {
     google: 'YOUR_GOOGLE_SEARCH_CONSOLE_KEY',
-    yandex: 'YOUR_YANDEX_VERIFICATION_KEY',
+    other: {
+      'naver-site-verification': 'b9af45dd861b4b56d8d0bf6f2867505214c72c03',
+    },
   },
   icons: {
     icon: [
@@ -95,7 +97,7 @@ export const metadata: Metadata = {
       { url: '/apple-touch-icon.png' },
     ],
   },
-  manifest: '/site.webmanifest',
+  // manifest: '/site.webmanifest',
   other: {
     'msapplication-TileColor': '#FF5A36',
   },
