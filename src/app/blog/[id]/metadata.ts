@@ -22,16 +22,16 @@ export async function generateMetadata(
 
   if (!post) {
     return {
-      title: 'Post Not Found | Best Korean Food in Seoul',
+      title: 'Post Not Found | Tasty 4 Seoul', // 대문자 시작
       description: 'The requested post could not be found. Discover the best Korean food and hidden restaurants in Seoul.',
       keywords: seoKeywords.join(', '),
       openGraph: {
-        title: 'Post Not Found | tasty 4 Seoul',
+        title: 'Post Not Found | Tasty 4 Seoul', // 대문자 시작
         description: 'The requested post could not be found. Discover the best Korean food and hidden restaurants in Seoul.',
         url: postUrl,
         type: 'website',
         locale,
-        siteName: 'tasty 4 Seoul',
+        siteName: 'tasty 4 Seoul', // 대문자 시작
         images: [
           {
             url: '/og_img.png',
@@ -43,7 +43,7 @@ export async function generateMetadata(
       },
       twitter: {
         card: 'summary_large_image',
-        title: 'Post Not Found | tasty 4 Seoul',
+        title: 'Post Not Found | tasty 4 Seoul', // 대문자 시작
         description: 'The requested post could not be found. Discover the best Korean food and hidden restaurants in Seoul.',
         images: ['/og_img.png'],
       },
@@ -62,17 +62,14 @@ export async function generateMetadata(
     title: postTitle,
     description: postDescription,
     keywords: postKeywords,
-    applicationName: 'tasty 4 Seoul',
-    creator: 'tasty 4 Seoul Team',
-    publisher: 'tasty 4 Seoul',
+    applicationName: 'tasty 4 Seoul', // 대문자 시작
+    creator: 'tasty 4 Seoul Team', // 대문자 시작
+    publisher: 'tasty 4 Seoul', // 대문자 시작
     metadataBase: new URL(baseUrl),
     alternates: {
       canonical: postUrl,
       languages: {
         'en-US': postUrl,
-        'ko-KR': postUrl.replace('/blog/', '/ko/blog/'),
-        'ja-JP': postUrl.replace('/blog/', '/jp/blog/'),
-        'zh-CN': postUrl.replace('/blog/', '/zh/blog/')
       }
     },
     robots: {
@@ -92,7 +89,7 @@ export async function generateMetadata(
       url: postUrl,
       type: 'article',
       locale: 'en_US',
-      siteName: 'tasty 4 Seoul',
+      siteName: 'tasty 4 Seoul', // 대문자 시작
       publishedTime: post.created_at,
       modifiedTime: post.updated_at || post.created_at,
       images: [
@@ -110,7 +107,7 @@ export async function generateMetadata(
       'article:modified_time': post.updated_at || post.created_at,
       'article:section': 'Food & Travel',
       'article:tag': post.tags?.join(', ') || 'Korean food, Seoul restaurants, Food travel',
-      'article:author': 'tasty 4 Seoul Team',
+      'article:author': 'tasty 4 Seoul Team', // 대문자 시작
       'twitter:card': 'summary_large_image',
       'twitter:title': postTitle,
       'twitter:description': postDescription,
