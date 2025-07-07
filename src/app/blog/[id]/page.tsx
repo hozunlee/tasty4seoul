@@ -5,10 +5,10 @@ import remarkGfm from 'remark-gfm';
 import { getEngPostById, getAdjacentEngPosts } from '@/entities/post/api/posts';
 import { RelatedPosts } from '@/widgets/blog/RelatedPosts';
 
-// Re-export metadata from the separate metadata file
-import { generateMetadata as blogMetadata } from './metadata';
+// Import the generateMetadata function
+import { generateMetadata } from './metadata';
 
-export { blogMetadata as metadata };
+export { generateMetadata };
 
 export default async function PostPage({
   params,
