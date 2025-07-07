@@ -38,7 +38,7 @@ export function SearchBar({ onSearch, disabled = false }: SearchBarProps) {
           "px-4 py-2 rounded-md focus:outline-none focus:ring-2 transition-colors",
           disabled
             ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-            : "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500"
+            : "bg-[#008080] text-white hover:bg-[#009090] focus:ring-blue-500"
         )}
       >
         Search
