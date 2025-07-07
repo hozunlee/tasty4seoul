@@ -7,11 +7,13 @@ type Props = {
 };
 
 export async function generateMetadata(
-  { params }: Props
+  { params }: { params: { id: string } }
 ): Promise<Metadata> {
-  const post = await getEngPostById(params.id);
+
+  const paramsData = await params;
+  const post = await getEngPostById(paramsData.id);
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-  const postUrl = `${baseUrl}/blog/${params.id}`;
+  const postUrl = `${baseUrl}/blog/${paramsData.id}`;
   const locale = 'en-US'; // 기본 로케일 설정
 
   const seoKeywords = [
