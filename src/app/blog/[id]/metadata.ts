@@ -1,13 +1,13 @@
 import { Metadata } from 'next';
 import { getEngPostById } from '@/entities/post/api/posts';
 
-type Props = {
-  params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
+// type Props = {
+//   params: { id: string };
+//   searchParams: { [key: string]: string | string[] | undefined };
+// };
 
 export async function generateMetadata(
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ): Promise<Metadata> {
 
   const paramsData = await params;
