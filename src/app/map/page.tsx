@@ -3,6 +3,8 @@ import { MapWithPosts } from '@/features/map/MapWithPosts';
 import HeroClientWrapper from '@/shared/ui/HeroClientWrapper';
 import { PostsTable } from '@/widgets/blog/PostsTable';
 
+export const revalidate = 1800; // Revalidate at most every 30 minutes
+
 export default async function MapPage() {
   const allPosts = await getEngPosts();
 

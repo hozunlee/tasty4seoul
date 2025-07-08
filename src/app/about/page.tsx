@@ -43,6 +43,10 @@ export default function AboutPage() {
               </a>
             </div>
           </section>
+          <section>
+            {/* Brand Identity Section */}
+            <BrandIdentity />
+          </section>
 
           {/* About Me Section */}
           <section className="mb-12">
@@ -89,8 +93,7 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Brand Identity Section */}
-          <BrandIdentity />
+
 
         </div>
       </main>

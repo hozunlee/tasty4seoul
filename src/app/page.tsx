@@ -4,6 +4,8 @@ import { MapWithPosts } from '@/features/map/MapWithPosts';
 import HeroClientWrapper from '@/shared/ui/HeroClientWrapper';
 import BrandIdentity from '@/shared/ui/BrandIdentity';
 
+export const revalidate = 1800; // Revalidate at most every 30 minutes
+
 export default async function Home() {
   // Fetch only the latest 3 posts
   const latestPosts = await getEngPosts(3);
