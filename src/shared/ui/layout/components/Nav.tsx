@@ -53,20 +53,21 @@ export function NavBar({ items, className }: NavBarProps) {
               href={item.link}
               // Active state is now handled by URL
               className={cn(
-                "relative flex flex-col items-center justify-center w-16 h-16 sm:w-auto sm:h-auto sm:px-4 sm:py-2 rounded-full transition-all",
+                "relative flex flex-col items-center justify-center w-16 h-14 sm:w-auto sm:h-auto sm:px-4 sm:py-2 rounded-full transition-all",
                 "text-foreground/80 hover:text-primary hover:bg-muted/50",
-                isActive ? "text-primary bg-muted" : "",
+                isActive ? "text-primary" : "",
               )}
             >
               <span className={cn(
-                "flex items-center justify-center w-8 h-8 sm:w-4 sm:h-4",
+                "flex items-center justify-center w-6 h-6 sm:w-4 sm:h-4",
                 isActive ? "text-primary" : "text-foreground/70"
               )}>
                 {item.icon}
               </span>
               <span className={cn(
                 "text-xs mt-1 sm:mt-0 sm:ml-2 sm:text-sm",
-                isActive ? "text-primary font-medium" : "text-foreground/70"
+                isActive ? "text-primary font-medium block" : "text-foreground/70 hidden",
+                "sm:inline"
               )}>
                 {item.name}
               </span>
