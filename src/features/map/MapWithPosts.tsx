@@ -1,10 +1,15 @@
 
 'use client';
 
-import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
+import {
+  GoogleMap,
+  useJsApiLoader,
+  Marker,
+  InfoWindow,
+} from '@react-google-maps/api';
 import { Post } from '@/entities/post/model/types';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 
 interface MapWithPostsProps {
   posts: Post[];
@@ -27,10 +32,14 @@ interface Location {
   lng: number;
 }
 
+// Geocoding 라이브러리를 명시적으로 포함합니다.
+const LIBRARIES: ('geocoding')[] = ['geocoding'];
+
 export function MapWithPosts({ posts }: MapWithPostsProps) {
   const router = useRouter();
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
+    libraries: LIBRARIES,
   });
 
   const [locations, setLocations] = useState<Location[]>([]);
@@ -43,18 +52,20 @@ export function MapWithPosts({ posts }: MapWithPostsProps) {
       const geocodePromises = posts
         .filter(post => post.address)
         .map(post => {
-          return new Promise<Location | null>((resolve) => {
+          return new Promise<Location | null>(resolve => {
             geocoder.geocode({ address: post.address! }, (results, status) => {
               if (status === 'OK' && results && results[0]) {
                 const location = results[0].geometry.location;
-                resolve({ 
+                resolve({
                   id: post.id,
                   title: post.title,
-                  lat: location.lat(), 
-                  lng: location.lng() 
+                  lat: location.lat(),
+                  lng: location.lng(),
                 });
               } else {
-                console.error(`Geocode failed for address "${post.address}" with status: ${status}`);
+                console.error(
+                  `Geocode failed for address "${post.address}" with status: ${status}`,
+                );
                 resolve(null);
               }
             });
@@ -62,7 +73,9 @@ export function MapWithPosts({ posts }: MapWithPostsProps) {
         });
 
       Promise.all(geocodePromises).then(results => {
-        setLocations(results.filter((location): location is Location => location !== null));
+        setLocations(
+          results.filter((location): location is Location => location !== null),
+        );
       });
     }
   }, [isLoaded, posts]);
@@ -75,23 +88,25 @@ export function MapWithPosts({ posts }: MapWithPostsProps) {
       } else {
         const bounds = new window.google.maps.LatLngBounds();
         locations.forEach(location => {
-          bounds.extend(new window.google.maps.LatLng(location.lat, location.lng));
+          bounds.extend(
+            new window.google.maps.LatLng(location.lat, location.lng),
+          );
         });
         mapRef.current.fitBounds(bounds);
       }
     }
   }, [locations]);
 
-  const onMapLoad = (map: google.maps.Map) => {
+  const onMapLoad = useCallback((map: google.maps.Map) => {
     mapRef.current = map;
-  };
+  }, []);
 
   const handleMarkerClick = (id: string) => {
     router.push(`/blog/${id}`);
   };
 
   if (loadError) {
-    return <div>Error loading maps</div>;
+    return <div>Error loading maps. Please check the console.</div>;
   }
 
   if (!isLoaded) {
@@ -99,27 +114,30 @@ export function MapWithPosts({ posts }: MapWithPostsProps) {
   }
 
   return (
-      <GoogleMap 
-        mapContainerStyle={containerStyle} 
-        center={initialCenter} 
-        zoom={10}
-        onLoad={onMapLoad}
-      >
-        {locations.map((location) => (
-          <Marker 
-            key={location.id} 
-            position={location} 
-            onClick={() => handleMarkerClick(location.id)}
-            onMouseOver={() => setActiveMarker(location.id)}
-            onMouseOut={() => setActiveMarker(null)}
-          >
-            {activeMarker === location.id && (
-              <InfoWindow position={location}>
-                <div>{location.title}</div>
-              </InfoWindow>
-            )}
-          </Marker>
-        ))}
-      </GoogleMap>
+    <GoogleMap
+      mapContainerStyle={containerStyle}
+      center={initialCenter}
+      zoom={10}
+      onLoad={onMapLoad}
+    >
+      {locations.map(location => (
+        <Marker
+          key={location.id}
+          position={location}
+          onClick={() => handleMarkerClick(location.id)}
+          onMouseOver={() => setActiveMarker(location.id)}
+          onMouseOut={() => setActiveMarker(null)}
+        >
+          {activeMarker === location.id && (
+            <InfoWindow
+              position={location}
+              onCloseClick={() => setActiveMarker(null)}
+            >
+              <div>{location.title}</div>
+            </InfoWindow>
+          )}
+        </Marker>
+      ))}
+    </GoogleMap>
   );
 }
