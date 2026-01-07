@@ -32,14 +32,12 @@ interface Location {
   lng: number;
 }
 
-// Geocoding 라이브러리를 명시적으로 포함합니다.
-const LIBRARIES: ('geocoding')[] = ['geocoding'];
-
 export function MapWithPosts({ posts }: MapWithPostsProps) {
   const router = useRouter();
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
-    libraries: LIBRARIES,
+    // Geocoding library is no longer needed on the client-side
+    // libraries: ['geocoding'],
   });
 
   const [locations, setLocations] = useState<Location[]>([]);
@@ -47,38 +45,19 @@ export function MapWithPosts({ posts }: MapWithPostsProps) {
   const mapRef = useRef<google.maps.Map | null>(null);
 
   useEffect(() => {
-    if (isLoaded) {
-      const geocoder = new window.google.maps.Geocoder();
-      const geocodePromises = posts
-        .filter(post => post.address)
-        .map(post => {
-          return new Promise<Location | null>(resolve => {
-            geocoder.geocode({ address: post.address! }, (results, status) => {
-              if (status === 'OK' && results && results[0]) {
-                const location = results[0].geometry.location;
-                resolve({
-                  id: post.id,
-                  title: post.title,
-                  lat: location.lat(),
-                  lng: location.lng(),
-                });
-              } else {
-                console.error(
-                  `Geocode failed for address "${post.address}" with status: ${status}`,
-                );
-                resolve(null);
-              }
-            });
-          });
-        });
-
-      Promise.all(geocodePromises).then(results => {
-        setLocations(
-          results.filter((location): location is Location => location !== null),
-        );
-      });
-    }
-  }, [isLoaded, posts]);
+    // Filter posts that have valid numeric latitude and longitude and map them to Location type
+    const newLocations: Location[] = posts
+      .filter(
+        post => typeof post.latitude === 'number' && typeof post.longitude === 'number',
+      )
+      .map(post => ({
+        id: post.id,
+        title: post.title,
+        lat: post.latitude as number,
+        lng: post.longitude as number,
+      }));
+    setLocations(newLocations);
+  }, [posts]); // Depend on posts prop
 
   useEffect(() => {
     if (mapRef.current && locations.length > 0) {
@@ -117,7 +96,7 @@ export function MapWithPosts({ posts }: MapWithPostsProps) {
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={initialCenter}
-      zoom={10}
+      zoom={12}
       onLoad={onMapLoad}
     >
       {locations.map(location => (
