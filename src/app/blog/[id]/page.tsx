@@ -36,16 +36,18 @@ export default async function PostPage({
         </time>
       </header>
 
-      <div className="relative mb-8 h-96 w-full overflow-hidden rounded-lg">
-        <Image
-          src={post.image_url || '/placeholder.svg'}
-          alt={post.title}
-          fill
-          sizes="(min-width: 96rem) 94rem, (min-width: 80rem) 78rem, (min-width: 64rem) 62rem, (min-width: 48rem) 46rem, (min-width: 40rem) 38rem, calc(100vw - 2rem)"
-          priority
-          className="object-cover"
-        />
-      </div>
+      {post.image_url && (
+        <div className="mb-8 h-96 w-full overflow-hidden rounded-lg">
+          {/* eslint-disable-next-line @next/next/no-img-element -- Load the cover directly from its CDN. */}
+          <img
+            src={post.image_url}
+            alt={post.title}
+            referrerPolicy="no-referrer"
+            fetchPriority="high"
+            className="block h-full w-full object-cover"
+          />
+        </div>
+      )}
 
       <div className="prose prose-lg dark:prose-invert mx-auto max-w-3xl">
         <ReactMarkdown
