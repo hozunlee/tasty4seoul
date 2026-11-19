@@ -41,6 +41,7 @@ export default async function PostPage({
           src={post.image_url || '/placeholder.svg'}
           alt={post.title}
           fill
+          sizes="(min-width: 96rem) 94rem, (min-width: 80rem) 78rem, (min-width: 64rem) 62rem, (min-width: 48rem) 46rem, (min-width: 40rem) 38rem, calc(100vw - 2rem)"
           priority
           className="object-cover"
         />
@@ -50,17 +51,28 @@ export default async function PostPage({
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           components={{
-            img: ({ ...props }) => (
-              <span className="block relative w-full h-96 max-h-[1000px] my-4">
-                <Image
-                  src={String(props.src) || ''}
-                  alt={props.alt || ''}
-                  fill
-                  className="object-cover"
-                  loading="lazy"
-                />
-              </span>
-            ),
+            img: ({ src: source, alt = '' }) => {
+              const src = typeof source === 'string' ? source : '';
+              const imageUrl = URL.canParse(src) ? new URL(src) : null;
+              const isNaverImage =
+                (imageUrl?.protocol === 'https:' || imageUrl?.protocol === 'http:') &&
+                (imageUrl.hostname === 'postfiles.pstatic.net' ||
+                  imageUrl.hostname === 'blogthumb.pstatic.net');
+
+              return (
+                <span className="block relative w-full h-96 max-h-[1000px] my-4">
+                  <Image
+                    src={src}
+                    alt={alt}
+                    fill
+                    unoptimized={isNaverImage}
+                    referrerPolicy={isNaverImage ? 'no-referrer' : undefined}
+                    className="object-cover"
+                    loading="lazy"
+                  />
+                </span>
+              );
+            },
           }}
         >
           {post.content}
